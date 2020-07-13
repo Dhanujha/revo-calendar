@@ -6,7 +6,7 @@ import React, {
   useRef
 } from 'react'
 
-import styles from './RevoCalendar.module.css'
+import styles from './RevoCalendar.module.scss'
 
 /***********
  * HELPERS *
