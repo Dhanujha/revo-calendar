@@ -316,6 +316,7 @@ export default function RevoCalendar({
   showSidebarToggler = true,
   sidebarDefault = true,
   onePanelAtATime = false,
+  allowDeleteEvent = true,
   openDetailsOnDateSelection = true,
   timeFormat24 = true,
   detailDateFormat = 'DD/MM/YYYY',
@@ -609,7 +610,9 @@ export default function RevoCalendar({
     }
 
     function toggleDeleteButton(i) {
-      showDelete === i ? setDeleteState(-1) : setDeleteState(i)
+      if (allowDeleteEvent) {
+        showDelete === i ? setDeleteState(-1) : setDeleteState(i)
+      }
     }
 
     let eventDivs = []
