@@ -1,6 +1,6 @@
 {
   "name": "revo-calendar",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "React Event Calendar Component",
   "author": {
     "name": "Gabriel Molter",
@@ -14,16 +14,20 @@
   "engines": {
     "node": ">=10"
   },
+  "homepage": "https://gjmolter.github.io/revo-calendar",
+  "keywords": [
+    "event",
+    "calendar",
+    "modern",
+    "responsive",
+    "react",
+    "customizable"
+  ],
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && npm install && npm run build",
+    "predeploy": "cd demo && npm install && npm run build",
     "deploy": "gh-pages -d demo/build"
   },
   "peerDependencies": {

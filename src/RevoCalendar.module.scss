@@ -1,8 +1,9 @@
 .revoCalendar {
-  --primaryColor: #2d5e7b;
-  --primaryColor50: #2d5e7b80;
-  --secondaryColor: #b6e7ff;
-  --accentColor: white;
+  --primaryColor: #4f6995;
+  --primaryColor50: #4f699580;
+  --secondaryColor: #c4dce9;
+  --todayColor: #3b3966;
+  --textColor: #333333;
   --animationSpeed: 300ms;
   --sidebarWidth: 180px;
   --detailWidth: 250px;
@@ -98,13 +99,14 @@
     padding: 1rem;
     flex-grow: 1;
     max-width: 100%;
+    background: var(--secondaryColor);
     .scrollInner {
       overflow-x: scroll;
     }
     .monthName {
       text-align: center;
-      border-bottom: 1px solid var(--accentColor);
       margin-bottom: 1rem;
+      padding-bottom: 10px;
       color: var(--primaryColor);
     }
     .dayNames {
@@ -112,6 +114,7 @@
       display: grid;
       grid-template-columns: repeat(7, minmax(40px, 1fr));
       margin-bottom: 1rem;
+      color: var(--textColor);
     }
     .days {
       display: grid;
@@ -135,14 +138,14 @@
           background: none;
           border: none;
           font-size: 1rem;
-          color: #333;
+          color: var(--textColor);
           &:hover {
             background: var(--primaryColor50) !important;
           }
         }
       }
       .today {
-        border: 2px solid var(--accentColor) !important;
+        border: 2px solid var(--todayColor) !important;
       }
       .currentDay {
         background: var(--primaryColor) !important;
@@ -166,7 +169,7 @@
       min-width: 0px;
     }
     .dateTitle {
-      color: white;
+      color: var(--secondaryColor);
       text-align: center;
       font-size: 1.6rem;
       padding: 0 1rem;

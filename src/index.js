@@ -255,23 +255,20 @@ const HELPER_FUNCTIONS = {
   getFirstWeekDayOfMonth: function (cM, cY) {
     return new Date(cY, cM, 1).getDay()
   },
-  getFormattedDate: function (date, format, lang) {
+  getFormattedDate: function (date, format, lang, languages) {
     var mm =
       date.getMonth() + 1 <= 9
         ? '0' + (date.getMonth() + 1)
         : date.getMonth() + 1
     var dd = date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()
 
-    format = format.replace('MMMM', TRANSLATIONS[lang].months[date.getMonth()])
-    format = format.replace(
-      'MMM',
-      TRANSLATIONS[lang].monthsShort[date.getMonth()]
-    )
+    format = format.replace('MMMM', languages[lang].months[date.getMonth()])
+    format = format.replace('MMM', languages[lang].monthsShort[date.getMonth()])
     format = format.replace('MM', mm)
     format = format.replace('DD', dd)
-    format = format.replace('dddd', TRANSLATIONS[lang].days[date.getDay()])
-    format = format.replace('ddd', TRANSLATIONS[lang].daysShort[date.getDay()])
-    format = format.replace('dd', TRANSLATIONS[lang].daysMin[date.getDay()])
+    format = format.replace('dddd', languages[lang].days[date.getDay()])
+    format = format.replace('ddd', languages[lang].daysShort[date.getDay()])
+    format = format.replace('dd', languages[lang].daysMin[date.getDay()])
     format = format.replace('YYYY', date.getFullYear())
     format = format.replace('YY', date.getFullYear().toString().substr(2))
 
@@ -303,12 +300,14 @@ let animatingDetail = 0
  ******************/
 export default function RevoCalendar({
   style = {},
+  className = '',
   events = [],
   highlightToday = true,
   lang = 'en',
-  primaryColor = 'black',
-  secondaryColor = 'white',
-  accentColor = '#ddd',
+  primaryColor = '#4F6995',
+  secondaryColor = '#c4dce9',
+  todayColor = '#3B3966',
+  textColor = '#333333',
   animationSpeed = 300,
   sidebarWidth = 180,
   detailWidth = 280,
@@ -320,6 +319,7 @@ export default function RevoCalendar({
   openDetailsOnDateSelection = true,
   timeFormat24 = true,
   detailDateFormat = 'DD/MM/YYYY',
+  languages = TRANSLATIONS,
   date = new Date(),
   getCurrentCalendarState = (date) => {},
   deleteEvent = (index) => {}
@@ -335,11 +335,14 @@ export default function RevoCalendar({
   }, ${HELPER_FUNCTIONS.getRGBAColor(secondaryColor)[1]}, ${
     HELPER_FUNCTIONS.getRGBAColor(secondaryColor)[2]
   })`
-  const accentColorRGBA = `rgb(${
-    HELPER_FUNCTIONS.getRGBAColor(accentColor)[0]
-  }, ${HELPER_FUNCTIONS.getRGBAColor(accentColor)[1]}, ${
-    HELPER_FUNCTIONS.getRGBAColor(accentColor)[2]
+  const todayColorRGBA = `rgb(${
+    HELPER_FUNCTIONS.getRGBAColor(todayColor)[0]
+  }, ${HELPER_FUNCTIONS.getRGBAColor(todayColor)[1]}, ${
+    HELPER_FUNCTIONS.getRGBAColor(todayColor)[2]
   })`
+  const textColorRGBA = `rgb(${HELPER_FUNCTIONS.getRGBAColor(textColor)[0]}, ${
+    HELPER_FUNCTIONS.getRGBAColor(textColor)[1]
+  }, ${HELPER_FUNCTIONS.getRGBAColor(textColor)[2]})`
 
   const calendarRef = useRef(null)
 
@@ -476,7 +479,7 @@ export default function RevoCalendar({
           </div>
           <div>
             <ul>
-              {TRANSLATIONS[lang].months.map((month, i) => {
+              {languages[lang].months.map((month, i) => {
                 return (
                   <li key={i}>
                     <button
@@ -548,11 +551,11 @@ export default function RevoCalendar({
     return (
       <div className={styles.inner}>
         <h1 className={styles.monthName}>
-          {TRANSLATIONS[lang].months[currentMonth]}
+          {languages[lang].months[currentMonth]}
         </h1>
         <div className={styles.scrollInner}>
           <div className={styles.dayNames}>
-            {TRANSLATIONS[lang].daysShort.map((weekDay) => {
+            {languages[lang].daysShort.map((weekDay) => {
               return <div key={weekDay}>{weekDay.toUpperCase()}</div>
             })}
           </div>
@@ -638,7 +641,7 @@ export default function RevoCalendar({
                 </svg>
                 <span>
                   {events[index].allday
-                    ? TRANSLATIONS[lang].allDay
+                    ? languages[lang].allDay
                     : `${HELPER_FUNCTIONS.getFormattedTime(
                         eventDate,
                         timeFormat24
@@ -668,7 +671,7 @@ export default function RevoCalendar({
 
     // FOR NO-EVENT DAYS ADD NO EVENTS TEXT
     if (eventDivs.length === 0) {
-      eventDivs.push(<p key={-1}>{TRANSLATIONS[lang].noEventForThisDay}</p>)
+      eventDivs.push(<p key={-1}>{languages[lang].noEventForThisDay}</p>)
     }
 
     return (
@@ -685,7 +688,8 @@ export default function RevoCalendar({
             {HELPER_FUNCTIONS.getFormattedDate(
               selectedDate,
               detailDateFormat,
-              lang
+              lang,
+              languages
             )}
           </div>
           <div className={styles.events}>
@@ -719,7 +723,11 @@ export default function RevoCalendar({
    * RENDER ACTUAL CALENDAR *
    **************************/
   return (
-    <div className={styles.revoCalendar} ref={calendarRef} style={style}>
+    <div
+      className={`${styles.revoCalendar} ${className}`}
+      ref={calendarRef}
+      style={style}
+    >
       <style>{`
         .${styles.revoCalendar} {
           --primaryColor: ${primaryColorRGBA};
@@ -730,7 +738,8 @@ export default function RevoCalendar({
             ${HELPER_FUNCTIONS.getRGBAColor(primaryColorRGBA)[3] / 2}
           );
           --secondaryColor: ${secondaryColorRGBA};
-          --accentColor: ${accentColorRGBA};
+          --todayColor: ${todayColorRGBA};
+          --textColor: ${textColorRGBA};
           --animationSpeed: ${animationSpeed}ms;
           --sidebarWidth: ${sidebarWidth}px;
           --detailWidth: ${detailWidth}px;
