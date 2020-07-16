@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/revo-calendar/static/css/main.4337e902.chunk.css",
-    "main.js": "/revo-calendar/static/js/main.3c5003fb.chunk.js",
-    "main.js.map": "/revo-calendar/static/js/main.3c5003fb.chunk.js.map",
+    "main.js": "/revo-calendar/static/js/main.d8f3d56f.chunk.js",
+    "main.js.map": "/revo-calendar/static/js/main.d8f3d56f.chunk.js.map",
     "runtime-main.js": "/revo-calendar/static/js/runtime-main.9d798614.js",
     "runtime-main.js.map": "/revo-calendar/static/js/runtime-main.9d798614.js.map",
     "static/css/2.dc92d1cb.chunk.css": "/revo-calendar/static/css/2.dc92d1cb.chunk.css",
     "static/js/2.d1b51a2c.chunk.js": "/revo-calendar/static/js/2.d1b51a2c.chunk.js",
     "static/js/2.d1b51a2c.chunk.js.map": "/revo-calendar/static/js/2.d1b51a2c.chunk.js.map",
     "index.html": "/revo-calendar/index.html",
-    "precache-manifest.7cb32d2ba9698340d79dc33a42c2fd23.js": "/revo-calendar/precache-manifest.7cb32d2ba9698340d79dc33a42c2fd23.js",
+    "precache-manifest.2373843861d0427828e6ed75a03f86ea.js": "/revo-calendar/precache-manifest.2373843861d0427828e6ed75a03f86ea.js",
     "service-worker.js": "/revo-calendar/service-worker.js",
     "static/css/2.dc92d1cb.chunk.css.map": "/revo-calendar/static/css/2.dc92d1cb.chunk.css.map",
     "static/css/main.4337e902.chunk.css.map": "/revo-calendar/static/css/main.4337e902.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.dc92d1cb.chunk.css",
     "static/js/2.d1b51a2c.chunk.js",
     "static/css/main.4337e902.chunk.css",
-    "static/js/main.3c5003fb.chunk.js"
+    "static/js/main.d8f3d56f.chunk.js"
   ]
 }

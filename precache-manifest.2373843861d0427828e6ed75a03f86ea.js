@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "02f46f9954e03dcd0cf2949f933d016d",
+    "revision": "ee9157a052417ef30ac2e183683c8e6d",
     "url": "/revo-calendar/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/revo-calendar/static/css/2.dc92d1cb.chunk.css"
   },
   {
-    "revision": "1bc893535fdd65bda901",
+    "revision": "47e8926af9da43583431",
     "url": "/revo-calendar/static/css/main.4337e902.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/revo-calendar/static/js/2.d1b51a2c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1bc893535fdd65bda901",
-    "url": "/revo-calendar/static/js/main.3c5003fb.chunk.js"
+    "revision": "47e8926af9da43583431",
+    "url": "/revo-calendar/static/js/main.d8f3d56f.chunk.js"
   },
   {
     "revision": "97b7b3de2587e0acb980",

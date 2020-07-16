@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/revo-calendar/precache-manifest.7cb32d2ba9698340d79dc33a42c2fd23.js"
+  "/revo-calendar/precache-manifest.2373843861d0427828e6ed75a03f86ea.js"
 );
 
 self.addEventListener('message', (event) => {
