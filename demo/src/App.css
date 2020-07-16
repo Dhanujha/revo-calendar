@@ -41,6 +41,9 @@ header {
   font-size: 2.5rem;
   margin: 1rem;
 }
+button {
+  cursor: pointer;
+}
 
 h2 {
   text-align: center;
@@ -75,6 +78,14 @@ p span {
 pre {
   margin: 8px auto;
   color: white;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.react-datepicker-wrapper input[type='text'] {
+  width: 80px !important;
+  text-align: center;
 }
 
 .comment {
@@ -84,18 +95,9 @@ pre {
 .code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-  background: #292937;
-  margin: 2rem auto;
-  width: 90%;
-  max-width: 620px;
-  padding: 10px;
-  color: white;
-  border-radius: 10px;
-  border: 2px solid white;
-  font-size: 1rem;
-  overflow: scroll;
 }
 
+.code,
 .options {
   background: #292937;
   margin: 2rem auto;
@@ -107,13 +109,14 @@ pre {
   border: 2px solid white;
   font-size: 1rem;
   overflow: scroll;
+  box-shadow: 0 0 10px #0002;
 }
 
 .options > div {
   margin: 10px 0;
 }
 
-.options > div > label {
+.options label {
   margin-right: 10px;
 }
 
@@ -150,6 +153,16 @@ pre {
   background: #131324;
   color: white;
   font-weight: bold;
+  transition: background 200ms ease;
+}
+
+.colorPickerBtn:hover {
+  background: #07071f;
+}
+
+.colorPickerBtn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .pickerContainer {
@@ -158,6 +171,16 @@ pre {
   display: flex;
   justify-content: center;
   box-sizing: border-box;
+}
+
+.addEvent {
+  display: flex;
+  justify-content: center;
+}
+
+.addEvent button {
+  height: 35px;
+  padding: 0 20px;
 }
 
 .container {
@@ -225,6 +248,9 @@ footer p a {
 }
 .codePurple {
   color: #b788f4;
+}
+.codeOrange {
+  color: #edb562;
 }
 .tab {
   margin-left: 30px;

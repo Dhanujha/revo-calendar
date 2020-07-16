@@ -7,7 +7,7 @@
 
 A modern-looking React Event Calendar component.
 
-Very much inspired on [Evo Calendar](https://github.com/edlynvillegas/evo-calendar/)
+Very much inspired on [Evo Calendar](https://github.com/edlynvillegas/evo-calendar/). If you're not using React on your project, I recommend this calendar plugin that runs on jQuery.
 
 ## Demo 👀
 

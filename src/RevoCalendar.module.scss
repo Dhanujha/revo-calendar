@@ -189,6 +189,8 @@
       overflow-y: scroll;
       overflow-x: hidden;
       max-height: 500px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
       &::before {
         content: '';
       }
@@ -196,6 +198,9 @@
         content: ' ';
         white-space: pre;
         line-height: 0;
+      }
+      &::-webkit-scrollbar {
+        display: none;
       }
       & > p {
         padding: 0.8rem;
@@ -223,7 +228,7 @@
           font-size: 1.2rem;
           text-align: center;
           color: var(--primaryColor);
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.7rem;
           font-weight: bold;
         }
         & > div {
