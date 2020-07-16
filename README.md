@@ -5,18 +5,22 @@
 [bundlephobia-url]: https://bundlephobia.com/result?p=revo-calendar
 [bundlephobia-image]: https://badgen.net/bundlephobia/minzip/revo-calendar
 
-A Modern-looking React Event Calendar component.
+A modern-looking React Event Calendar component.
 
 Very much inspired on [Evo Calendar](https://github.com/edlynvillegas/evo-calendar/)
 
 ## Demo 👀
 
-Live Demo and API Reference: [https://gjmolter.github.io/revo-calendar](https://gjmolter.github.io/revo-calendar)
+Live Demo and Playground: [https://gjmolter.github.io/revo-calendar](https://gjmolter.github.io/revo-calendar)
 
 ## Install 📦
 
 ```bash
+#NPM
 npm i revo-calendar
+
+#YARN
+yarn add revo-calendar
 ```
 
 ## Usage ✍️
@@ -124,7 +128,10 @@ const translations = {
 To render the calendar using custom `esperanto` language, pass the `translations` object and the key to `languages` and `lang` respectivelly.
 
 Example:
-`<RevoCalendar languages={translations} lang="esperanto" />`
+
+```jsx
+<RevoCalendar languages={translations} lang='esperanto' />
+```
 
 ### detailDateFormat Prop
 
@@ -141,6 +148,12 @@ detailDateFormat can be any string, with the following placeholders being replac
 | `dd`        | Tiny weekday name    | Th       |
 | `YYYY`      | Full year            | 1997     |
 | `YY`        | Year's last 2 digits | 97       |
+
+Example
+
+```js
+"MMM DD, YYYY" => "Nov 18, 1997"
+```
 
 ## License
 
