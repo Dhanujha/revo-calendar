@@ -323,6 +323,7 @@ export default function RevoCalendar({
   sidebarDefault = true,
   onePanelAtATime = false,
   allowDeleteEvent = true,
+  allowAddEvent = true,
   openDetailsOnDateSelection = true,
   timeFormat24 = true,
   showAllDayLabel = false,
@@ -750,14 +751,16 @@ export default function RevoCalendar({
               lang,
               languages
             )}
-            <button
-              className={styles.addEvent}
-              onClick={() =>
-                addEvent(new Date(currentYear, currentMonth, currentDay))
-              }
-            >
-              {languages[lang].addEvent}
-            </button>
+            {allowAddEvent && (
+              <button
+                className={styles.addEvent}
+                onClick={() =>
+                  addEvent(new Date(currentYear, currentMonth, currentDay))
+                }
+              >
+                {languages[lang].addEvent}
+              </button>
+            )}
           </div>
           <div className={styles.events}>
             {eventDivs.map((event) => {

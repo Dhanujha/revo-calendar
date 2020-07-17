@@ -121,6 +121,7 @@ function App() {
   const [showSidebarToggler, setShowSidebarToggler] = useState(true)
   const [onePanelAtATime, setOnePanelAtATime] = useState(false)
   const [allowDeleteEvent, setAllowDeleteEvent] = useState(true)
+  const [allowAddEvent, setAllowAddEvent] = useState(true)
   const [openDetailsOnDateSelection, setOpenDetailsOnDateSelection] = useState(
     true
   )
@@ -282,6 +283,7 @@ function App() {
             showSidebarToggler={showSidebarToggler}
             onePanelAtATime={onePanelAtATime}
             allowDeleteEvent={allowDeleteEvent}
+            allowAddEvent={allowAddEvent}
             openDetailsOnDateSelection={openDetailsOnDateSelection}
             timeFormat24={timeFormat24}
             showAllDayLabel={showAllDayLabel}
@@ -596,6 +598,17 @@ function App() {
             />
           </div>
           <div>
+            <label htmlFor='allowAddEvent'>allowAddEvent: </label>
+            <input
+              type='checkbox'
+              name='allowAddEvent'
+              checked={allowAddEvent}
+              onChange={(e) => {
+                setAllowAddEvent(e.target.checked)
+              }}
+            />
+          </div>
+          <div>
             <label htmlFor='openDetailsOnDateSelection'>
               openDetailsOnDateSelection:{' '}
             </label>
@@ -752,6 +765,12 @@ function App() {
               <span className='codeGreen'>allowDeleteEvent</span>
               {'={'}
               <span className='codePurple'>{allowDeleteEvent.toString()}</span>
+              {'}'}
+            </pre>
+            <pre className='tab'>
+              <span className='codeGreen'>allowAddEvent</span>
+              {'={'}
+              <span className='codePurple'>{allowAddEvent.toString()}</span>
               {'}'}
             </pre>
             <pre className='tab'>
