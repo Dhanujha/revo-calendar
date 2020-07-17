@@ -41,6 +41,11 @@ header {
   font-size: 2.5rem;
   margin: 1rem;
 }
+
+.header .mobileMenu {
+  display: none;
+}
+
 button {
   cursor: pointer;
 }
@@ -86,6 +91,7 @@ pre {
 .react-datepicker-wrapper input[type='text'] {
   width: 80px !important;
   text-align: center;
+  border-radius: 10px 0 0 10px !important;
 }
 
 .comment {
@@ -126,7 +132,8 @@ pre {
 }
 
 .options input[type='number'],
-.options input[type='text'] {
+.options input[type='text'],
+.timeDisplay {
   border: none;
   height: 24px;
   border-radius: 10px;
@@ -135,6 +142,15 @@ pre {
   background: #131324;
   color: white;
   font-weight: bold;
+}
+
+.timeDisplay {
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  font-size: 0.9rem;
 }
 
 .options input[type='number'] {
@@ -197,7 +213,6 @@ pre {
 
 footer {
   background: #4f6995;
-  height: 120px;
   padding: 1rem;
 }
 
@@ -206,6 +221,36 @@ footer p {
   color: white;
   line-height: 1rem;
   margin: 0;
+}
+
+.addEventModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  z-index: 30;
+}
+
+.addEventModal .options,
+.addEventModal h2 {
+  z-index: 10;
+}
+
+.addEventModal > div:last-of-type {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000d;
 }
 
 footer p a {
@@ -259,8 +304,11 @@ footer p a {
   margin-left: 60px;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 720px) {
   .header ul {
     display: none;
+  }
+  .header .mobileMenu {
+    display: block;
   }
 }

@@ -78,13 +78,13 @@ function App() {
       }
     },
     {
-      name: 'Lunch with Michael',
-      date: +lunchWithKevin,
+      name: 'Meeting with Vito',
+      date: +meetingWithVito,
       allday: false
     },
     {
-      name: 'Meeting with Vito',
-      date: +meetingWithVito,
+      name: 'Lunch with Michael',
+      date: +lunchWithKevin,
       allday: false
     },
     {
@@ -105,6 +105,7 @@ function App() {
   ])
 
   const [displayColorPicker, setDisplayColorPicker] = useState(0)
+  const [showAddEventModal, setShowAddEventModal] = useState(false)
 
   const [highlightToday, setHighlightToday] = useState(true)
   const [lang, setLang] = useState('en')
@@ -112,6 +113,7 @@ function App() {
   const [secondaryColor, setSecondaryColor] = useState('#D7E6EE')
   const [todayColor, setTodayColor] = useState('#3B3966')
   const [textColor, setTextColor] = useState('#333333')
+  const [indicatorColor, setIndicatorColor] = useState('orange')
   const [animationSpeed, setAnimationSpeed] = useState(300)
   const [sidebarWidth, setSidebarWidth] = useState(180)
   const [detailWidth, setDetailWidth] = useState(280)
@@ -123,6 +125,7 @@ function App() {
     true
   )
   const [timeFormat24, setTimeFormat24] = useState(true)
+  const [showAllDayLabel, setShowAllDayLabel] = useState(false)
   const [detailDateFormat, setDetailDateFormat] = useState('DD/MM/YYYY')
 
   const [newEventName, setNewEventName] = useState('')
@@ -138,6 +141,7 @@ function App() {
   }
 
   function addEvent() {
+    setShowAddEventModal(false)
     var newEvent = {
       name: newEventName,
       date: newEventDate,
@@ -153,31 +157,40 @@ function App() {
   }
 
   useEffect(() => {
-    var deleteEventFunction = deleteEvent.toString()
-    var deleteLines = deleteEventFunction.split('\n')
-    deleteLines.splice(0, 1)
-    deleteEventFunction = '\n'
-    deleteEventFunction += deleteLines.join('\n')
+    var deleteEventFunction = `
+    var temp = eventList
+    temp.splice(i, 1)
+    setEvents(temp)`
 
-    var addEventFunction = addEvent.toString()
-    var addLines = addEventFunction.split('\n')
-    addLines.splice(0, 1)
-    addEventFunction = '\n'
-    addEventFunction += addLines.join('\n')
+    var addEventFunction = `
+    var newEvent = {
+      name: newEventName,
+      date: newEventDate,
+      allday: newEventAllDay,
+      extra: {
+        icon: newEventIcon,
+        text: newEventText
+      }
+    };
+    var temp = eventList;
+    temp.push(newEvent);
+    setEvents([...temp]);`
 
     console.log(
-      `%cfunction` + `%cdeleteEvent` + '%c() {',
+      `%cfunction %cdeleteEvent %c() {\n`,
       'color: #f777c9',
       'color: #67fd6e',
       'color: #D7D7D7',
-      deleteEventFunction
+      deleteEventFunction,
+      `\n}`
     )
     console.log(
-      `%cfunction ` + `%caddEvent` + '%c() {',
+      `%cfunction %caddEvent %c() {\n`,
       'color: #f777c9',
       'color: #67fd6e',
       'color: #D7D7D7',
-      addEventFunction
+      addEventFunction,
+      `\n}`
     )
   }, [])
 
@@ -190,6 +203,7 @@ function App() {
       <header>
         <div className='header'>
           <h1>RevoCalendar</h1>
+          <div className='mobileMenu'>MOBILE MENU</div>
           <ul>
             <li>
               <a href='#gettingStarted'>Getting Started</a>
@@ -260,6 +274,7 @@ function App() {
             secondaryColor={secondaryColor}
             todayColor={todayColor}
             textColor={textColor}
+            indicatorColor={indicatorColor}
             animationSpeed={animationSpeed}
             sidebarWidth={sidebarWidth}
             detailWidth={detailWidth}
@@ -269,82 +284,105 @@ function App() {
             allowDeleteEvent={allowDeleteEvent}
             openDetailsOnDateSelection={openDetailsOnDateSelection}
             timeFormat24={timeFormat24}
+            showAllDayLabel={showAllDayLabel}
             detailDateFormat={detailDateFormat}
+            addEvent={(date) => {
+              setNewEventDate(date)
+              setShowAddEventModal(true)
+            }}
           />
         </div>
-        <p style={{ marginTop: '3rem' }}>Add your own event: </p>
-        <div className='options'>
-          <code>
-            <pre>
-              <span className='codePink'>var </span>newEvent = {'{'}
-            </pre>
-            <pre className='tab'>
-              name<label className='codePink'>:</label> "
-              <input
-                type='text'
-                value={newEventName}
-                onChange={(e) => setNewEventName(e.target.value)}
-              ></input>
-              ",
-            </pre>
-            <pre className='tab'>
-              date<label className='codePink'>:</label>
-              <DatePicker
-                selected={newEventDate}
-                onChange={(date) => {
-                  setNewEventDate(date)
-                }}
-              />
-              ,
-            </pre>
-            <pre className='tab'>
-              allDay<label className='codePink'>:</label>
-              <input
-                type='checkbox'
-                checked={newEventAllDay}
-                onChange={(e) => setNewEventAllDay(e.target.checked)}
-              />
-              ,
-            </pre>
-            <pre className='tab'>
-              extra<label className='codePink'>:</label> {'{'}
-            </pre>
-            <pre className='tab2'>
-              icon<label className='codePink'>:</label>"
-              <input
-                type='text'
-                value={newEventIcon}
-                onChange={(e) => setNewEventIcon(e.target.value)}
-              ></input>
-              ",
-            </pre>
-            <pre className='tab2'>
-              text<label className='codePink'>:</label>"
-              <input
-                type='text'
-                value={newEventText}
-                onChange={(e) => setNewEventText(e.target.value)}
-              ></input>
-              "
-            </pre>
-            <pre>{'}'}</pre>
-            <div className='addEvent'>
-              <button
-                className='colorPickerBtn'
-                disabled={newEventName === ''}
-                onClick={addEvent}
-              >
-                addEvent()
-              </button>
+        {showAddEventModal && (
+          <div className='addEventModal'>
+            <h2>Add your own event: </h2>
+            <div className='options'>
+              <code>
+                <pre>
+                  <span className='codePink'>var </span>newEvent = {'{'}
+                </pre>
+                <pre className='tab'>
+                  name<label className='codePink'>:</label> "
+                  <input
+                    type='text'
+                    value={newEventName}
+                    onChange={(e) => setNewEventName(e.target.value)}
+                  ></input>
+                  ",
+                </pre>
+                <pre className='tab'>
+                  date<label className='codePink'>:</label>
+                  <DatePicker
+                    id='datePicker'
+                    selected={newEventDate}
+                    onChange={(date) => {
+                      setNewEventDate(date)
+                    }}
+                    showTimeSelect
+                    dateFormat='dd/MM/yyyy'
+                  />
+                  <label className='timeDisplay' htmlFor='datePicker'>{`${
+                    newEventDate.getHours() <= 9
+                      ? '0' + newEventDate.getHours()
+                      : newEventDate.getHours()
+                  }:${
+                    newEventDate.getMinutes() <= 9
+                      ? '0' + newEventDate.getMinutes()
+                      : newEventDate.getMinutes()
+                  }`}</label>
+                  , <span className='comment'>{'/* DD/MM/YYYY */'}</span>
+                </pre>
+                <pre className='tab'>
+                  allDay<label className='codePink'>:</label>
+                  <input
+                    type='checkbox'
+                    checked={newEventAllDay}
+                    onChange={(e) => setNewEventAllDay(e.target.checked)}
+                  />
+                  ,
+                </pre>
+                <pre className='tab'>
+                  extra<label className='codePink'>:</label> {'{'}
+                </pre>
+                <pre className='tab2'>
+                  icon<label className='codePink'>:</label>"
+                  <input
+                    type='text'
+                    value={newEventIcon}
+                    onChange={(e) => setNewEventIcon(e.target.value)}
+                  ></input>
+                  ",
+                </pre>
+                <pre className='tab2'>
+                  text<label className='codePink'>:</label>"
+                  <input
+                    type='text'
+                    value={newEventText}
+                    onChange={(e) => setNewEventText(e.target.value)}
+                  ></input>
+                  "
+                </pre>
+                <pre>{'}'}</pre>
+                <div className='addEvent'>
+                  <button
+                    className='colorPickerBtn'
+                    disabled={newEventName === ''}
+                    onClick={addEvent}
+                  >
+                    addEvent()
+                  </button>
+                </div>
+              </code>
             </div>
-          </code>
-        </div>
+            <div onClick={() => setShowAddEventModal(false)}></div>
+          </div>
+        )}
         <p style={{ marginTop: '3rem' }}>
           Before you start playing, please note that you won't be able to modify
           the <span>date</span>, <span>languages</span>, <span>style</span>,{' '}
-          <span>className</span>, <span>deleteEvent</span>,{' '}
-          <span>detailDefault</span>, <span>sidebarDefault</span> and{' '}
-          <span>getCurrentCalendarState</span> props in this demo.
+          <span>className</span>, <span>addEvent</span>,{' '}
+          <span>deleteEvent</span>, <span>detailDefault</span>,{' '}
+          <span>sidebarDefault</span>,<span>dateSelected</span> and{' '}
+          <span>eventSelected</span> props in this demo.
         </p>
         <p>
           For detailed explanations on all available props, check the{' '}
@@ -464,6 +502,26 @@ function App() {
             )}
           </div>
           <div>
+            <label>indicatorColor: </label>
+            <button
+              onClick={() =>
+                setDisplayColorPicker(displayColorPicker === 5 ? 0 : 5)
+              }
+              className='colorPickerBtn'
+            >
+              {displayColorPicker === 5 ? 'Close' : 'Pick Color'}
+            </button>
+            {displayColorPicker === 5 && (
+              <div className='pickerContainer'>
+                <ChromePicker
+                  color={indicatorColor}
+                  onChangeComplete={(c) => setIndicatorColor(c.hex)}
+                  disableAlpha={true}
+                />
+              </div>
+            )}
+          </div>
+          <div>
             <label htmlFor='animationSpeed'>animationSpeed: </label>
             <input
               type='number'
@@ -562,6 +620,17 @@ function App() {
             />
           </div>
           <div>
+            <label htmlFor='showAllDayLabel'>showAllDayLabel: </label>
+            <input
+              type='checkbox'
+              name='showAllDayLabel'
+              checked={showAllDayLabel}
+              onChange={(e) => {
+                setShowAllDayLabel(e.target.checked)
+              }}
+            />
+          </div>
+          <div>
             <label htmlFor='detailDateFormat'>detailDateFormat: </label>
             <input
               type='text'
@@ -637,6 +706,11 @@ function App() {
               <span className='codeYellow'>"{textColor}"</span>
             </pre>
             <pre className='tab'>
+              <span className='codeGreen'>indicatorColor</span>
+              {'='}
+              <span className='codeYellow'>"{indicatorColor}"</span>
+            </pre>
+            <pre className='tab'>
               <span className='codeGreen'>animationSpeed</span>
               {'={'}
               <span className='codePurple'>{animationSpeed}</span>
@@ -695,6 +769,12 @@ function App() {
               {'}'}
             </pre>
             <pre className='tab'>
+              <span className='codeGreen'>showAllDayLabel</span>
+              {'={'}
+              <span className='codePurple'>{showAllDayLabel.toString()}</span>
+              {'}'}
+            </pre>
+            <pre className='tab'>
               <span className='codeGreen'>detailDateFormat</span>
               {'='}
               <span className='codeYellow'>"{detailDateFormat}"</span>
@@ -703,6 +783,12 @@ function App() {
               <span className='codeGreen'>deleteEvent</span>
               {'={'}
               <span className='codeGreen'>deleteEvent</span>
+              {'}'}
+            </pre>
+            <pre className='tab'>
+              <span className='codeGreen'>addEvent</span>
+              {'={'}
+              <span className='codeGreen'>addEvent</span>
               {'}'}
             </pre>
             <pre>{'/>'}</pre>

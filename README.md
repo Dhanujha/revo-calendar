@@ -53,6 +53,7 @@ class Example extends Component {
 | secondaryColor             | string    | `'#4F6995'`                                       | Calendar background color and side panels text color                                                                                                         | Hex, RGB, RGBA, CSS color name                                                            |
 | todayColor                 | string    | `'#4F6995'`                                       | Color of today's highlight ring (Will only be used if `highlightToday` is `true`                                                                             | Hex, RGB, RGBA, CSS color name                                                            |
 | textColor                  | string    | `'#4F6995'`                                       | Text color for weekday names and day numbers                                                                                                                 | Hex, RGB, RGBA, CSS color name                                                            |
+| indicatorColor             | string    | `'orange'`                                        | Text color for event indicator                                                                                                                               | Hex, RGB, RGBA, CSS color name                                                            |
 | animationSpeed             | number    | `300`                                             | Speed in milliseconds for all transitions and animations                                                                                                     | Any number                                                                                |
 | sidebarWidth               | number    | `180`                                             | Size in pixels of the left panel (month/year selection)                                                                                                      | Any number                                                                                |
 | detailWidth                | number    | `280`                                             | Size in pixels of the right panel (current day's events)                                                                                                     | Any number                                                                                |
@@ -65,9 +66,11 @@ class Example extends Component {
 | timeFormat24               | bool      | `true`                                            | If `true`, will display dates in 24H format instead of 12 (21:41 instead of 9:41 PM)                                                                         | `true` or `false`                                                                         |
 | detailDateFormat           | string    | `'DD/MM/YYYY'`                                    | The way that current selected date will be displayed on right panel                                                                                          | Any string. See details below                                                             |
 | languages                  | object    | translation object with `en`, `pt`, `es` and `de` | If the current supported languages are not enough or you want to modify one of the translations, you can add your own translations object. See details below |
-| getCurrentCalendarState    | function  | `date => {}`                                      | Use this function to get current selected date on your parent component                                                                                      | Any function that receives a `Date` object parameter                                      |
+| dateSelected               | function  | `date => {}`                                      | Use this function to get current selected date on your parent component                                                                                      | Any function that receives an object with `day`, `month` and `year` keys                  |
+| eventSelected              | function  | `index => {}`                                     | Use this function to get clicked event's index                                                                                                               | Any function that receives a `number` parameter (event index on `events` array)           |
 | allowDeleteEvent           | bool      | `true`                                            | If `true`, will display delete button when event is clicked                                                                                                  | `true` or `false`                                                                         |
-| deleteEvent                | function  | `index => {}`                                     | Use this function to delete events from the `events` array                                                                                                   | Any function that receives an `number` parameter (index to be deleted from `events` list) |
+| addEvent                   | function  | `date => {}`                                      | Use this function to add Events to `events` array                                                                                                            | Any function that receives an object with `day`, `month` and `year` keys                  |
+| deleteEvent                | function  | `index => {}`                                     | Use this function to delete events from the `events` array                                                                                                   | Any function that receives a `number` parameter (index to be deleted from `events` array) |
 
 ### events Prop
 
@@ -120,7 +123,8 @@ const translations = {
     months: ['Januaro', ...'Decembro'],
     monthsShort: ['Jan', ...'Dec'],
     noEventForThisDay: 'Neniu evento por ĉi tiu tago ... do ripozu!',
-    allDay: 'Tuta tago'
+    allDay: 'Tuta tago',
+    addEvent: 'Aldoni eventon'
   }
 }
 ```
@@ -143,6 +147,7 @@ detailDateFormat can be any string, with the following placeholders being replac
 | `MMM`       | Short month name     | Nov      |
 | `MM`        | Month number         | 11       |
 | `DD`        | Day number           | 18       |
+| `nth`       | Ordinal day number   | 18th     |
 | `dddd`      | Weekday name         | Thursday |
 | `ddd`       | Short weekday name   | Thu      |
 | `dd`        | Tiny weekday name    | Th       |
@@ -152,7 +157,7 @@ detailDateFormat can be any string, with the following placeholders being replac
 Example
 
 ```js
-"MMM DD, YYYY" => "Nov 18, 1997"
+"MMM nth, YYYY" => "Nov 18th, 1997"
 ```
 
 ## License
