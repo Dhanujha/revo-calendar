@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/revo-calendar/static/css/main.4337e902.chunk.css",
-    "main.js": "/revo-calendar/static/js/main.d8f3d56f.chunk.js",
-    "main.js.map": "/revo-calendar/static/js/main.d8f3d56f.chunk.js.map",
+    "main.css": "/revo-calendar/static/css/main.fff002f8.chunk.css",
+    "main.js": "/revo-calendar/static/js/main.d43d532b.chunk.js",
+    "main.js.map": "/revo-calendar/static/js/main.d43d532b.chunk.js.map",
     "runtime-main.js": "/revo-calendar/static/js/runtime-main.9d798614.js",
     "runtime-main.js.map": "/revo-calendar/static/js/runtime-main.9d798614.js.map",
-    "static/css/2.dc92d1cb.chunk.css": "/revo-calendar/static/css/2.dc92d1cb.chunk.css",
-    "static/js/2.d1b51a2c.chunk.js": "/revo-calendar/static/js/2.d1b51a2c.chunk.js",
-    "static/js/2.d1b51a2c.chunk.js.map": "/revo-calendar/static/js/2.d1b51a2c.chunk.js.map",
+    "static/css/2.25ff2e5b.chunk.css": "/revo-calendar/static/css/2.25ff2e5b.chunk.css",
+    "static/js/2.c04f3faa.chunk.js": "/revo-calendar/static/js/2.c04f3faa.chunk.js",
+    "static/js/2.c04f3faa.chunk.js.map": "/revo-calendar/static/js/2.c04f3faa.chunk.js.map",
     "index.html": "/revo-calendar/index.html",
-    "precache-manifest.2373843861d0427828e6ed75a03f86ea.js": "/revo-calendar/precache-manifest.2373843861d0427828e6ed75a03f86ea.js",
+    "precache-manifest.d4cd69c6aa56b061ccf79352f80ceb28.js": "/revo-calendar/precache-manifest.d4cd69c6aa56b061ccf79352f80ceb28.js",
     "service-worker.js": "/revo-calendar/service-worker.js",
-    "static/css/2.dc92d1cb.chunk.css.map": "/revo-calendar/static/css/2.dc92d1cb.chunk.css.map",
-    "static/css/main.4337e902.chunk.css.map": "/revo-calendar/static/css/main.4337e902.chunk.css.map",
-    "static/js/2.d1b51a2c.chunk.js.LICENSE.txt": "/revo-calendar/static/js/2.d1b51a2c.chunk.js.LICENSE.txt"
+    "static/css/2.25ff2e5b.chunk.css.map": "/revo-calendar/static/css/2.25ff2e5b.chunk.css.map",
+    "static/css/main.fff002f8.chunk.css.map": "/revo-calendar/static/css/main.fff002f8.chunk.css.map",
+    "static/js/2.c04f3faa.chunk.js.LICENSE.txt": "/revo-calendar/static/js/2.c04f3faa.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9d798614.js",
-    "static/css/2.dc92d1cb.chunk.css",
-    "static/js/2.d1b51a2c.chunk.js",
-    "static/css/main.4337e902.chunk.css",
-    "static/js/main.d8f3d56f.chunk.js"
+    "static/css/2.25ff2e5b.chunk.css",
+    "static/js/2.c04f3faa.chunk.js",
+    "static/css/main.fff002f8.chunk.css",
+    "static/js/main.d43d532b.chunk.js"
   ]
 }
