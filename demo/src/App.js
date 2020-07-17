@@ -78,13 +78,13 @@ function App() {
       }
     },
     {
-      name: 'Meeting with Vito',
-      date: +meetingWithVito,
+      name: 'Lunch with Michael',
+      date: +lunchWithKevin,
       allday: false
     },
     {
-      name: 'Lunch with Michael',
-      date: +lunchWithKevin,
+      name: 'Meeting with Vito',
+      date: +meetingWithVito,
       allday: false
     },
     {
