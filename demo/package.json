@@ -13,7 +13,7 @@
     "react-dom": "^16.13.1",
     "react-github-btn": "^1.2.0",
     "react-scripts": "3.4.1",
-    "revo-calendar": "^1.0.7"
+    "revo-calendar": "^1.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
